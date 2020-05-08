@@ -39,10 +39,7 @@ export default {
       ) {
         this.$store.state.xBallChange *= -1;
       }
-      if (
-        this.$store.state.yBall < this.$store.state.diameter / 2 ||
-        this.$store.state.yBall > s.height - this.$store.state.diameter / 2
-      ) {
+      if (this.$store.state.yBall < this.$store.state.diameter / 2) {
         this.$store.state.yBallChange *= -1;
       }
 
@@ -51,6 +48,12 @@ export default {
           s.width / 2 - this.$store.state.paddleWidth / 2;
         this.$store.state.yPaddle = s.height - 50;
         this.$store.state.started = true;
+      }
+
+      if (this.$store.state.yBall > s.height - this.$store.state.diameter / 2) {
+        s.textSize(96);
+        s.text("GAME OVER", s.width / 2 - 300, s.height / 2 - 48);
+        s.noLoop();
       }
 
       s.fill("#C6FF00");
