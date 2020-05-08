@@ -45,15 +45,42 @@ export default {
       ) {
         this.$store.state.yBallChange *= -1;
       }
-      // if () {
-      //   s.textSize(96);
-      //   s.text("GAME OVER", s.width / 2 - 300, s.height / 2 - 48);
-      //   s.noLoop();
-      // }
-    },
-    // keypressed(s) {
 
-    // },
+      if (!this.$store.state.started) {
+        this.$store.state.xPaddle =
+          s.width / 2 - this.$store.state.paddleWidth / 2;
+        this.$store.state.yPaddle = s.height - 50;
+        this.$store.state.started = true;
+      }
+
+      s.fill("#C6FF00");
+      s.noStroke();
+      s.rect(
+        this.$store.state.xPaddle,
+        this.$store.state.yPaddle,
+        this.$store.state.paddleWidth,
+        this.$store.state.paddleHeight
+      );
+
+      if (
+        this.$store.state.xBall > this.$store.state.xPaddle &&
+        this.$store.state.xBall <
+          this.$store.state.xPaddle + this.$store.state.paddleWidth &&
+        this.$store.state.yBall + this.$store.state.diameter / 2 >=
+          this.$store.state.yPaddle
+      ) {
+        this.$store.state.xBallChange *= -1;
+        this.$store.state.yBallChange *= -1;
+        this.$store.state.score++;
+      }
+    },
+    keypressed(s) {
+      if (s.keyCode === s.LEFT_ARROW) {
+        this.$store.state.xPaddle -= this.$store.state.paddleSpeed;
+      } else if (s.keyCode === s.RIGHT_ARROW) {
+        this.$store.state.xPaddle += this.$store.state.paddleSpeed;
+      }
+    },
   },
 };
 </script>
