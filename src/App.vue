@@ -6,6 +6,17 @@
     <v-navigation-drawer app clipped dark class="secondary">
       <v-list-item>
         <v-list-item-content>
+          <v-spacer />
+          <v-list-item-title class="display-2">{{
+            $store.state.score
+          }}</v-list-item-title>
+          <v-list-item-subtitle>Score</v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
+      <v-divider />
+
+      <v-list-item>
+        <v-list-item-content>
           <v-list-item-title class="title">Game</v-list-item-title>
           <v-list-item-subtitle>Settings</v-list-item-subtitle>
         </v-list-item-content>
